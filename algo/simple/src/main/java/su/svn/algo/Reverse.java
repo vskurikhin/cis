@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Reverse
 {
-    volatile static int i = 0;
+    AtomicInteger count = new AtomicInteger(0);
 
-    static int[] read(InputStream is)
+    private int a[];
+
+    private int[] read(InputStream is)
     {
         List<Integer> list = new ArrayList<>();
 
@@ -19,13 +22,23 @@ public class Reverse
             list.add(s.nextInt());
         }
 
-        int a[] = new int[list.size()];
-        list.forEach(e -> a[i++] = e);
+        a = new int[list.size()];
+        list.stream().parallel().forEach(e -> a[count.incrementAndGet()] = e);
 
         return a;
     }
 
-    static int[] reverce(int[] a)
+    public Reverse(InputStream is)
+    {
+        a = reverce(read(is));
+    }
+
+    public Reverse(int a[])
+    {
+        a = reverce(a);
+    }
+
+    int[] reverce(int[] a)
     {
         for (int i = 0; i < a.length / 2; i++) {
             int b = a[i];
@@ -36,11 +49,15 @@ public class Reverse
         return a;
     }
 
+    public int[] get()
+    {
+        return a;
+    }
 
     public static void main(String[] args) throws IOException
     {
         System.out.println(Arrays.toString(
-            reverce(read(System.in))
+            new Reverse(System.in).get()
         ));
     }
 }

@@ -11,7 +11,7 @@ class ReverseTest
     @Test
     void testCase00()
     {
-        Reverse.reverce(test00);
+        new Reverse(test00);
         assertArrayEquals(expected00, test00);
     }
 
@@ -20,7 +20,7 @@ class ReverseTest
     @Test
     void testCase01()
     {
-        Reverse.reverce(test01);
+        new Reverse(test01);
         assertArrayEquals(expected01, test01);
     }
 
@@ -29,7 +29,7 @@ class ReverseTest
     @Test
     void testCase02()
     {
-        Reverse.reverce(test02);
+        new Reverse(test02);
         assertArrayEquals(expected02, test02);
     }
 
@@ -38,7 +38,7 @@ class ReverseTest
     @Test
     void testCase03()
     {
-        Reverse.reverce(test03);
+        new Reverse(test03);
         assertArrayEquals(expected03, test03);
     }
 }
